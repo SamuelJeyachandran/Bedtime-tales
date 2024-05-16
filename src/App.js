@@ -1,40 +1,54 @@
 import './App.css';
 import { useState } from 'react';
 import React, { useRef } from 'react';
-import { TextField ,Button, Container, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import { TextField, Button, Container, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
 function App() {
   const [characterName, setCharacterName] = useState("")
   const [sidekick, setSidekick] = useState("")
   const [location, setLocation] = useState("")
   const [storyType, setStoryType] = useState("")
-  const randomNames = ["John", "Bob" , "Mary", "Lily" , "Martha" , "David"]
-  const randomSidekick = ["dog", "cat" , "kangaroo" , "pony"]
-  const randomLocation = ["space", "the beach" , "an old attic", "a dungeon"]
-  const randomStoryType = ["funny", "dramatic" , "adventure", "fantasy", "romantic"]
+  const [story, setStory] = useState("")
+  const randomNames = ["John", "Bob", "Mary", "Lily", "Martha", "David"]
+  const randomSidekick = ["dog", "cat", "kangaroo", "pony"]
+  const randomLocation = ["space", "the beach", "an old attic", "a dungeon"]
+  const randomStoryType = ["funny", "dramatic", "adventure", "fantasy", "romantic"]
   function getRandomValue(options) {
-    const random = Math.floor(Math.random()*options.length)
+    const random = Math.floor(Math.random() * options.length)
     return options[random]
   }
-  function randomStory(){
+  function randomStory() {
     setCharacterName(getRandomValue(randomNames))
     setSidekick(getRandomValue(randomSidekick))
     setLocation(getRandomValue(randomLocation))
     setStoryType(getRandomValue(randomStoryType))
   }
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault()
     console.log(`Generate a short ${storyType} Bedtime Story with the main character called ${characterName} and a ${sidekick} as a sidekick. set in ${location}`)
+    const prompt = `Generate a short ${storyType} Bedtime Story with the main character called ${characterName} and a ${sidekick} as a sidekick. set in ${location}`
+    const body = await fetch("https://d033drc8v9.execute-api.us-east-1.amazonaws.com/dev/", {
+      method: "POST",
+      body: JSON.stringify({ prompt }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    })
+      .then((response) => response.json())
+      .then(response => JSON.parse(response.body))
+
+    console.log(body.message.content)
+    setStory(body.message.content)
   }
   return (
     <Container maxWidth='sm'>
       <Typography variant="h2">Bedtime Tales!!!</Typography>
       <form onSubmit={onSubmit}>
-        <Button onClick={randomStory}variant="outlined" sx={{ mb: 2 }}>Random Story</Button>
-        <TextField fullWidth value={characterName} id="character-name" label="Name of character" variant="outlined" sx={{ mb: 2 }} onChange={(e) => setCharacterName(e.target.value)}/>
+        <Button onClick={randomStory} variant="outlined" sx={{ mb: 2 }}>Random Story</Button>
+        <TextField fullWidth value={characterName} id="character-name" label="Name of character" variant="outlined" sx={{ mb: 2 }} onChange={(e) => setCharacterName(e.target.value)} />
 
         <FormControl fullWidth >
           <InputLabel id="demo-simple-select-label">What animal will be the sidekick</InputLabel>
-          <Select 
+          <Select
             value={sidekick}
             onChange={(e) => setSidekick(e.target.value)}
             id="sidekick"
@@ -64,7 +78,7 @@ function App() {
         </FormControl>
         <FormControl fullWidth >
           <InputLabel id="demo-simple-select-label">What type of story?</InputLabel>
-          <Select 
+          <Select
             value={storyType}
             onChange={(e) => setStoryType(e.target.value)}
             id="storyType"
@@ -80,6 +94,7 @@ function App() {
         </FormControl>
         <Button type="submit" variant="contained">Create Story</Button>
       </form>
+      <p>{story}</p>  
     </Container>
   );
 }
