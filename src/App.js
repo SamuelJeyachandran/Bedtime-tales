@@ -1,13 +1,15 @@
 import './App.css';
 import { useState } from 'react';
 import React, { useRef } from 'react';
-import { TextField, Button, Container, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import LoadingButton from '@mui/lab/LoadingButton';
+import {TextField, Button, Container, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
 function App() {
   const [characterName, setCharacterName] = useState("")
   const [sidekick, setSidekick] = useState("")
   const [location, setLocation] = useState("")
   const [storyType, setStoryType] = useState("")
   const [story, setStory] = useState("")
+  const [loading, setLoading] = useState(false)
   const randomNames = ["John", "Bob", "Mary", "Lily", "Martha", "David"]
   const randomSidekick = ["dog", "cat", "kangaroo", "pony"]
   const randomLocation = ["space", "the beach", "an old attic", "a dungeon"]
@@ -24,8 +26,9 @@ function App() {
   }
   const onSubmit = async (e) => {
     e.preventDefault()
+    setLoading(true)
     console.log(`Generate a short ${storyType} Bedtime Story with the main character called ${characterName} and a ${sidekick} as a sidekick. set in ${location}`)
-    const prompt = `Generate a short ${storyType} Bedtime Story with the main character called ${characterName} and a ${sidekick} as a sidekick. set in ${location}`
+    const prompt = `Generate a 100 word  ${storyType} Bedtime Story with the main character called ${characterName} and a ${sidekick} as a sidekick. set in ${location}`
     const body = await fetch("https://d033drc8v9.execute-api.us-east-1.amazonaws.com/dev/", {
       method: "POST",
       body: JSON.stringify({ prompt }),
@@ -37,7 +40,8 @@ function App() {
       .then(response => JSON.parse(response.body))
 
     console.log(body.message.content)
-    setStory(body.message.content)
+    setStory(body.message.content.replace(/\n/g, '<br />'))
+    setLoading(false)
   }
   return (
     <Container maxWidth='sm'>
@@ -82,7 +86,7 @@ function App() {
             value={storyType}
             onChange={(e) => setStoryType(e.target.value)}
             id="storyType"
-            label="What type of story"
+            label="What type of story"  
             sx={{ mb: 2 }}
           >
             <MenuItem value="funny">Funny</MenuItem>
@@ -92,9 +96,10 @@ function App() {
             <MenuItem value="romantic">Romantic</MenuItem>
           </Select>
         </FormControl>
-        <Button type="submit" variant="contained">Create Story</Button>
+        <LoadingButton type="submit" loading={loading} variant="contained">Create Story</LoadingButton>
       </form>
-      <p>{story}</p>  
+      <br/>
+      <div dangerouslySetInnerHTML={{ __html: story }} />
     </Container>
   );
 }
