@@ -3,6 +3,7 @@ import { useState } from 'react';
 import React from 'react';
 import LoadingButton from '@mui/lab/LoadingButton';
 import {TextField, Button, Container, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import Donut from './Donut';
 function App() {
   const [characterName, setCharacterName] = useState("")
   const [sidekick, setSidekick] = useState("")
@@ -100,6 +101,7 @@ function App() {
       </form>
       <br/>
       <div dangerouslySetInnerHTML={{ __html: story }} />
+      <Donut />
     </Container>
   );
 }
