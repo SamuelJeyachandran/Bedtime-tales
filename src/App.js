@@ -1,6 +1,6 @@
 import './App.css';
 import { useState } from 'react';
-import React, { useRef } from 'react';
+import React from 'react';
 import LoadingButton from '@mui/lab/LoadingButton';
 import {TextField, Button, Container, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
 function App() {
@@ -28,7 +28,7 @@ function App() {
     e.preventDefault()
     setLoading(true)
     console.log(`Generate a short ${storyType} Bedtime Story with the main character called ${characterName} and a ${sidekick} as a sidekick. set in ${location}`)
-    const prompt = `Generate a 100 word  ${storyType} Bedtime Story with the main character called ${characterName} and a ${sidekick} as a sidekick. set in ${location}`
+    const prompt = `Generate a short ${storyType} Bedtime Story with the main character called ${characterName} and a ${sidekick} as a sidekick. set in ${location}`
     const body = await fetch("https://d033drc8v9.execute-api.us-east-1.amazonaws.com/dev/", {
       method: "POST",
       body: JSON.stringify({ prompt }),
