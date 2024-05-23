@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/bedtime-tales/static/css/main.f17a3d75.css",
-    "main.js": "/bedtime-tales/static/js/main.7faf41b2.js",
+    "main.js": "/bedtime-tales/static/js/main.209d1b55.js",
     "static/js/453.9fda3ddd.chunk.js": "/bedtime-tales/static/js/453.9fda3ddd.chunk.js",
     "index.html": "/bedtime-tales/index.html",
     "main.f17a3d75.css.map": "/bedtime-tales/static/css/main.f17a3d75.css.map",
-    "main.7faf41b2.js.map": "/bedtime-tales/static/js/main.7faf41b2.js.map",
+    "main.209d1b55.js.map": "/bedtime-tales/static/js/main.209d1b55.js.map",
     "453.9fda3ddd.chunk.js.map": "/bedtime-tales/static/js/453.9fda3ddd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f17a3d75.css",
-    "static/js/main.7faf41b2.js"
+    "static/js/main.209d1b55.js"
   ]
 }
