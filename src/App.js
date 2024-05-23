@@ -2,7 +2,7 @@ import './App.css';
 import { useState } from 'react';
 import React from 'react';
 import LoadingButton from '@mui/lab/LoadingButton';
-import {TextField, Button, Container, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import {TextField, Button, Container, FormControl, InputLabel, MenuItem, Select, Typography, Hidden } from '@mui/material';
 import Donut from './Donut';
 function App() {
   const [characterName, setCharacterName] = useState("")
@@ -46,7 +46,7 @@ function App() {
   }
   return (
     <Container maxWidth='sm'>
-      <Typography variant="h2">Bedtime Tales!!!</Typography>
+      <Typography variant="h2" sx={{my:2}}>Bedtime Tales!!!</Typography>
       <form onSubmit={onSubmit}>
         <Button onClick={randomStory} variant="outlined" sx={{ mb: 2 }}>Random Story</Button>
         <TextField fullWidth value={characterName} id="character-name" label="Name of character" variant="outlined" sx={{ mb: 2 }} onChange={(e) => setCharacterName(e.target.value)} />
@@ -101,7 +101,9 @@ function App() {
       </form>
       <br/>
       <div dangerouslySetInnerHTML={{ __html: story }} />
-      <Donut />
+      <br/>
+      {story ? <Donut/> : null }
+      
     </Container>
   );
 }
