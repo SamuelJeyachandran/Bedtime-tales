@@ -2,89 +2,31 @@
   text-align:left;
   margin: 20px;
 }
-
-#Button {
-  background-color: blue;
-  color:white ;
+.bmc-btn {
+  min-width: 210px;
+  color: #000000;
+  background-color: #FFDD00 !important;
+  height: 60px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: Normal;
+  border: none;
+  padding: 0px 24px;
+  line-height: 27px;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center;
+  font-family: 'Cookie', cursive !important;
+  -webkit-box-sizing: border-box !important;
+  box-sizing: border-box !important;
 }
-#LoginButton {
-  background-color: aquamarine;
-  color: rgb(60, 60, 60);
-  width: 50px;
-  height: 20px;
-}
-#Rain {
-  display: flex;
-  position: relative;
-  left: 700px;
-  top:-400px;
-  width: 10px;
-  height: 20px;
-  border-radius:40%;
-  background-color: #b7dfee;
-  animation-name: rain-animation;
-  animation-duration: 4s;
-  animation-iteration-count:infinite;
-}
-#Rain2 {
-  display: flex;
-  position: relative;
-  left: 780px;
-  top:-400px;
-  width: 10px;
-  height: 20px;
-  border-radius:40%;
-  background-color: #b7dfee;
-  animation-name: rain-animation;
-  animation-duration: 2s;
-  animation-iteration-count:infinite;
-}
-#Rain3 {
-  display: flex;
-  position: relative;
-  left: 781px;
-  top:-400px;
-  width: 10px;
-  height: 20px;
-  border-radius:40%;
-  background-color: #b7dfee;
-  animation-name: rain-animation;
-  animation-duration: 3s;
-  animation-iteration-count:infinite;
-}
-#Leaking {
-  left: 770px;
-  top:-450px;
-  position: relative;
-  width: 20px;
-  height: 50px;
-  background-color: #636262;
-}
-
-#Box {
-  display: flex;
-  width: 10px;
-  height: 20px;
-  background-color: aquamarine;
-  animation-name: border;
-  animation-duration: 4s;
-  animation-iteration-count:infinite;
-}
-@keyframes rain-animation {
-  0% {
-    transform: translateY(0vh);
-  }
-  95% {
-    transform: translateY(120vh);
-  }
-  100% {
-    transform: translateY(120vh);
-  }
-}
-@keyframes border {
-  0%    {width: 5px;}
-  45%  {width: 535px;}
-  100%    {width: 5px;}
+.bmc-btn-text {
+  margin-left: 8px;
+  display: inline-block;
+  line-height: 0;
+  width: 100%;
+  flex-shrink: 0;
+  /* font-family: [ FONT ] !important; */
 }
 
 .App-logo {

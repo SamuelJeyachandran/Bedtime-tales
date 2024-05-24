@@ -4,12 +4,9 @@ import React from 'react'
 const Donut = () => {
     return (
         <Box sx={{my:3}}>
-            <a href="https://www.buymeacoffee.com/samueljey" target="_blank">
-                <img
-                    src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Donut"
-                    style={{height: '45px'}} />
-            </a>
+            <a class="bmc-btn" target="_blank" href="https://buymeacoffee.com/samueljey">🍩<span class="bmc-btn-text">Buy me a donut</span></a>
         </Box>
+        
     )
 }
 export default Donut;
