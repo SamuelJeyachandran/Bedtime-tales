@@ -102,8 +102,6 @@ function Homepage() {
         <br/>
         <div dangerouslySetInnerHTML={{ __html: story }} />
         <br/>
-        {story ? <Donut/> : null }
-        
       </Container>
     );
   }
